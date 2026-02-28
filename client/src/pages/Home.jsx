@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { motion } from "motion/react"
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import { useNavigate } from 'react-router-dom'
 import LoginModel from '../components/LoginModel'
 import { useSelector } from 'react-redux'
 
 function Home() {
+    const navigate = useNavigate();
     const highlights = ["Smart structures, zero guesswork", "Fully Responsive Layouts", "Production Ready Output"]
     const [openLogin, setOpenLogin] = useState(false)
     const { userData } = useSelector(state => state.user);
@@ -27,7 +29,13 @@ function Home() {
                     className='mt-10 max-w-2xl mx-auto text-zinc-400 text-lg'>
                     Describe your idea and let AI generate a modern, responsive, production ready website.
                 </motion.p>
-                {!userData ? <button className='mt-12 px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition' onClick={() => { setOpenLogin(true) }}>Get Started</button> : <button>a</button>}
+                <button className='mt-12 px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition' onClick={() => {
+                    if (!userData) {
+                        setOpenLogin(true);
+                    } else {
+                        navigate('/dashboard');
+                    }
+                }}>{userData ? "Go to dashboard" : "Get Started"}</button>
 
             </section>
             <section className='max-w-7xl mx-auto px-6 pb-32'>

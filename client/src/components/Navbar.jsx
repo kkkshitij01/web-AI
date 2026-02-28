@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from "motion/react"
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Coins } from "lucide-react"
 import { serverUrl } from '../App';
 import axios from 'axios';
 import { setUserData } from '../redux/userSlice';
 export default function Navbar({ onClose }) {
 
+    const navigate = useNavigate();
     const { userData } = useSelector(state => state.user);
     const [openProfile, setOpenProfile] = useState(false);
     const dispatch = useDispatch();
@@ -66,7 +68,7 @@ export default function Navbar({ onClose }) {
                                                         <span>{userData.credits}</span>
                                                         <span className='font-semibold'>+</span>
                                                     </button>
-                                                    <button className='w-full py-3 text-left px-4 text-sm border-b border-white/10 hover:bg-white/5 justify-center flex items-center'>Dashboard</button>
+                                                    <button className='w-full py-3 text-left px-4 text-sm border-b border-white/10 hover:bg-white/5 justify-center flex items-center' onClick={() => { navigate('/dashboard') }}>Dashboard</button>
                                                     <button onClick={() => {
                                                         handleLogOut();
                                                     }} className='w-full py-3 text-left px-4 text-sm  hover:bg-white/5 justify-center flex items-center text-red-500 font-bold'>Logout</button>
