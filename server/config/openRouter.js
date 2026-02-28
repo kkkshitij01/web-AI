@@ -1,0 +1,27 @@
+const openRouterUrl = "https://openrouter.ai/api/v1/chat/completions";
+const model = "deepseek/deepseek-chat-v3-0324";
+
+const generateResponse = (prompt) => {
+  const res = fetch(openRouterUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer${process.env.OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: model,
+      messages: [
+        { role: "system", content: "You must return only valid raw JSON" },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      temperature: 0.2,
+    }),
+  });
+  if (!res.ok) {
+    const err = res.text();
+    throw new Error("openRouter err" + err);
+  }
+};
