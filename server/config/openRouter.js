@@ -1,11 +1,11 @@
 const openRouterUrl = "https://openrouter.ai/api/v1/chat/completions";
-const model = "deepseek/deepseek-chat-v3-0324";
+const model = "deepseek/deepseek-chat";
 
-const generateResponse = (prompt) => {
-  const res = fetch(openRouterUrl, {
+const generateResponse = async (prompt) => {
+  const res = await fetch(openRouterUrl, {
     method: "POST",
     headers: {
-      Authorization: `Bearer${process.env.OPENROUTER_API_KEY}`,
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -21,7 +21,10 @@ const generateResponse = (prompt) => {
     }),
   });
   if (!res.ok) {
-    const err = res.text();
+    const err = await res.text();
     throw new Error("openRouter err" + err);
   }
+  const data = await res.json();
+  return data.choices[0].message.content;
 };
+export default generateResponse;
