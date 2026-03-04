@@ -1,9 +1,21 @@
 import React from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import axios from "axios"
+import { serverUrl } from "../App.jsx"
 
 export default function Generate() {
+    const [prompt, setPrompt] = useState("");
     const navigate = useNavigate();
+    const handleGenerateWebiste = async () => {
+        try {
+            const result = await axios.post(`${serverUrl}/api/website/generate`, { prompt }, { withCredentials: true })
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div className='min-h-screen bg-linear-to-br from-[#050505] via-[#0b0b0b] to-[#050505] text-white'>
             <div className='sticky top-0 z-40 backdrop-blur-xl bg-black/50 border-b border-white/10'>
@@ -29,11 +41,11 @@ export default function Generate() {
                 <div className='mb-14'>
                     <h1 className='text-xl font-semibold mb-2'>Describe your website</h1>
                     <div className='relative'>
-                        <textarea className='w-full h-56 p-6 rounded-3xl bg-black/90 border border-white/30 outline-none resize-none leading-relaxed focus:ring-2 focus:ring-white/60' name="" id="" placeholder=' Provide a detailed overview of your website...'></textarea>
+                        <textarea className='w-full h-56 p-6 rounded-3xl bg-black/90 border border-white/30 outline-none resize-none leading-relaxed focus:ring-2 focus:ring-white/60' onChange={(e) => setPrompt(e.target.value)} value={prompt} placeholder=' Provide a detailed overview of your website...'></textarea>
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <button className='px-10 py-4 rounded-2xl font-bold text-lg bg-white text-black'>Generate Website</button>
+                    <button className='px-10 py-4 rounded-2xl font-bold text-lg bg-white text-black' onClick={handleGenerateWebiste}>Generate Website</button>
                 </div>
             </div>
         </div>

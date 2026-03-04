@@ -47,7 +47,7 @@ export default function Navbar({ onClose }) {
                     {
                         !userData ? <button className='px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 text-sm' onClick={onClose}>Get Started</button> :
                             <div className='relative'>
-                                <button onClick={() => setOpenProfile(!openProfile)} className='flex items-center'><img className='w-9 h-9 rounded-full border border-white/20 object-cover' src={userData.avatar} alt='avatar' /></button>
+                                <button onClick={() => setOpenProfile(!openProfile)} className='flex items-center'><img className='w-9 h-9 rounded-full border border-white/20 object-cover' referrerPolicy='no-referrer' src={userData.avatar} alt='avatar' /></button>
                                 <AnimatePresence>
                                     {
                                         openProfile && (

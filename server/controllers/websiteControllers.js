@@ -44,7 +44,7 @@ YOU MUST IMPLEMENT:
 ✔ Mobile-first CSS approach
 ✔ Responsive layout for:
   - Mobile (<768px)
-  - Tablet (768px–1024px)
+  - Tablet (768px-1024px)
   - Desktop (>1024px)
 
 ✔ Use:
@@ -186,12 +186,12 @@ export const generateWebsite = async (req, res) => {
       latestCode: parsed.code,
       conversation: [
         {
-          role: "ai",
-          content: parsed.message,
-        },
-        {
           role: "user",
           content: prompt,
+        },
+        {
+          role: "ai",
+          content: parsed.message,
         },
       ],
     });
@@ -291,6 +291,7 @@ export const changes = async (req, res) => {
       remainingCredits: user.credits,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "UPDATE WEBSITE ERROR" + error });
   }
 };
