@@ -153,32 +153,28 @@ ABSOLUTE RULES
 export const generateWebsite = async (req, res) => {
   try {
     const { prompt } = req.body;
-    if (!prompt) {
-      return res.status(400).json({ message: "Prompt is required" });
-    }
+    if (!prompt) return res.status(400).json({ message: "Prompt is required" });
     const user = await User.findById(req.user._id);
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
-    }
-    if (user.credits < 50) {
-      return res
-        .status(200)
-        .json({ message: "You don't have enough credits to generage website" });
-    }
+    if (!user) return res.status(404).json({ message: "User not found" });
+    if (user.credits < 50)
+      return res.status(402).json({ message: "Insufficient credits" });
     const finalPrompt = masterPrompt.replace("USER_PROMPT", prompt);
-    let raw = "";
     let parsed = null;
-    for (let i = 0; i < 2 && !parsed; i++) {
-      raw = await generateResponse(finalPrompt);
+
+    for (let i = 0; i < 2; i++) {
+      const raw = await generateResponse(
+        i === 0 ? finalPrompt : finalPrompt + "\n\n RETURN ONLY RAW JSON",
+      );
       parsed = await extractJson(raw);
-      if (!parsed) {
-        raw = await generateResponse(finalPrompt + "\n\n RETURN ONLY RAW JSON");
-        parsed = await extractJson(raw);
+
+      if (parsed && parsed.code) {
+        break;
       }
     }
-    if (!parsed.code) {
-      console.log("AI RETURNED INVALID RESPONSE");
-      return res.status(400).json({ message: "AI RETURNED INVALID RESPONSE" });
+    if (!parsed || !parsed.code) {
+      return res.status(422).json({
+        message: "AI returned an invalid response. Credits were not deducted.",
+      });
     }
     const website = await Website.create({
       user: user._id,
@@ -240,7 +236,7 @@ export const changes = async (req, res) => {
     if (user.credits < 25) {
       return res
         .status(200)
-        .json({ message: "You don't have enough credits to generage website" });
+        .json({ message: "You don't have enough credits to generate website" });
     }
     const website = await Website.findOne({
       _id: req.params.id,
@@ -301,5 +297,81 @@ export const getAllWebsite = async (req, res) => {
     return res.status(200).json(websites);
   } catch (error) {
     return res.status(500).json({ message: "GET ALL WEBSITE ERROR" + error });
+  }
+};
+
+export const deploy = async (req, res) => {
+  try {
+    const website = await Website.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!website) {
+      return res.status(404).json({ message: "website Not found" });
+    }
+    if (website.deployed && website.deployUrl) {
+      return res.status(200).json({
+        url: website.deployUrl,
+      });
+    }
+    if (!website.slug) {
+      website.slug =
+        website.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "")
+          .slice(0, 50) + website._id.toString().slice(-5);
+    }
+    website.deployed = true;
+    website.deployUrl = `${process.env.FRONTEND_URL}/site/${website.slug}`;
+    await website.save();
+    return res.status(200).json({
+      url: website.deployUrl,
+    });
+  } catch (error) {
+    console.error("DEPLOY_ERROR:", error);
+    return res
+      .status(500)
+      .json({ message: "An error occurred during deployment." });
+  }
+};
+export const deleteWebsite = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const website = await Website.findOneAndDelete({
+      _id: id,
+      user: req.user._id,
+    });
+
+    if (!website) {
+      return res.status(404).json({
+        message: "Website not found or you don't have permission to delete it.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Website deleted successfully",
+    });
+  } catch (error) {
+    console.error("DELETE WEBSITE ERROR:", error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error during deletion" });
+  }
+};
+
+export const getBySlug = async (req, res) => {
+  try {
+    const website = await Website.findOne({
+      slug: req.params.slug,
+      user: req.user._id,
+    });
+    if (!website) {
+      return res.status(400).json({ message: "website Not found" });
+    }
+    return res.status(200).json(website);
+  } catch (error) {
+    return res.status(500).json({ message: "Get website by Slug ERROR" });
   }
 };
