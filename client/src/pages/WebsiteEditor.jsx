@@ -199,7 +199,12 @@ export default function WebsiteEditor() {
     function Header() {
         return (
             <div className='h-14 px-4 flex items-center justify-between border-b border-white/10 w-full'>
-                <button className='bg-white text-black rounded-full' onClick={() => navigate('/dashboard')}><ArrowLeft size={20} /></button>
+                <button
+                    className='p-1.5 rounded-lg text-white- hover:text-white hover:bg-black bg-black/10 border border-white/20 cursor-pointer mr-5'
+                    onClick={() => navigate('/dashboard')}
+                >
+                    <ArrowLeft size={15} />
+                </button>
                 <span className='font-semibold truncate '>{website.title[0].toUpperCase() + website.title.slice(1, website.title.length)}</span>
                 <button onClick={() => { setShowChat(false) }} className='lg:hidden'><X size={18} /></button>
             </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Globe, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, } from 'lucide-react';
 import { serverUrl } from '../App';
 
 export default function Live() {
@@ -42,7 +42,7 @@ export default function Live() {
             <nav className="h-14 border-b border-white/10 bg-black/50 backdrop-blur-xl flex items-center justify-between px-4 z-50">
                 <div className="flex items-center gap-4">
                     <button
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/dashboard')}
                         className="p-2 hover:bg-white/10 rounded-lg transition-colors text-zinc-400 hover:text-white"
                     >
                         <ArrowLeft size={18} />
@@ -56,7 +56,7 @@ export default function Live() {
                 </div>
             </nav>
 
-            {/* Content Area */}
+
             <main className="flex-1 bg-[#0A0A0A] p-2 md:p-4">
                 <div className="w-full h-full rounded-xl overflow-hidden bg-white border border-white/10 shadow-2xl relative">
                     <iframe

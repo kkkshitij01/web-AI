@@ -77,14 +77,22 @@ export default function Dashboard() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            <div className='sticky top-0 z-40 backdrop-blur-xl bg-black/50 border-b border-white/10'>
-                <div className='max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
-                    <div className='flex items-center gap-4'>
-                        <button className='p-2 rounded-lg hover:bg-white/10 transition' onClick={() => { navigate('/') }}><ArrowLeft size={16} /></button>
-                        <h1 className='text-lg font-semibold'>Dashboard</h1>
+            <div className="sticky top-0 z-40 border-b border-white/5 bg-[#0c0c0e]/85 backdrop-blur-xl">
+                <div className='max-w-5xl mx-auto px-6 h-14 flex items-center justify-between'>
+                    <div className='flex items-center gap-3'>
+                        <button
+                            className='p-1.5 rounded-lg text-white- hover:text-white hover:bg-black bg-black/10 border border-white/20 cursor-pointer'
+                            onClick={() => navigate('/')}
+                        >
+                            <ArrowLeft size={15} />
+                        </button>
+                        <h1 className='text-sm font-semibold text-white'>Dashboard</h1>
                     </div>
-                    <button className='px-4 py-2 text-black rounded-lg bg-white text-sm font-semibold hover:scale-105 transform transition' onClick={() => navigate('/generate')}>
+                    <button
+                        className='text-sm font-semibold px-4 py-2 rounded-lg text-black bg-white/70 hover:bg-white/90 cursor-pointer transition-colors duration-150 '
+
+                        onClick={() => navigate('/generate')}
+                    >
                         + New Website
                     </button>
                 </div>
@@ -165,7 +173,7 @@ export default function Dashboard() {
                                     <iframe srcDoc={web.latestCode} title={web.title} className='absolute inset-0 w-[200%] h-[200%] scale-[0.5] origin-top-left pointer-events-none border-none' />
                                     <div className='absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]'>
                                         <button onClick={() => navigate(`/editor/${web._id}`)} className='px-5 py-2 bg-white text-black text-sm font-bold rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300'>
-                                            Open Project
+                                            Edit Project
                                         </button>
                                     </div>
                                 </div>
