@@ -20,6 +20,20 @@ export default function WebsiteEditor() {
     const [thinkingIndex, setThinkingIndex] = useState(0)
     const iframeRef = useRef(null)
     const [updateLodading, setUpdateLoding] = useState(false)
+
+    const handleDeploy = async (id) => {
+        try {
+            const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, { withCredentials: true })
+            setWebsite(prev => ({
+                ...prev,
+                deployed: true
+            }));
+            window.open(`${result.data.url}`, "_blank")
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Deployment failed")
+            console.log(error);
+        }
+    }
     const thinkingSteps = [
         "Analyzing design requirements...",
         "Mapping site architecture...",
@@ -127,7 +141,9 @@ export default function WebsiteEditor() {
                 <div className='h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80'>
                     <span className='text-xs text-zinc-400'>Live Preview</span>
                     <div className='flex gap-2'>
-                        <button className='flex items-center gap-2 px-4 py-1.5 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-105 transition'><Rocket size={14} />Deploy</button>
+                        {
+                            website.deployed ? "" : <button className='flex items-center gap-2 px-4 py-1.5 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-105 transition' onClick={() => handleDeploy(website._id)}><Rocket size={14} />Deploy</button>
+                        }
                         <button className='p-2 lg:hidden' onClick={() => { setShowChat(true) }}><MessageSquare size={18} /></button>
                         <button className='p-2' onClick={() => { setShowCode(true) }}><Code2 size={18} /></button>
                         <button className='p-2' onClick={() => setShowFullPreview(true)}><Monitor size={18} /></button>

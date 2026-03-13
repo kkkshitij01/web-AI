@@ -9,6 +9,7 @@ import WebsiteEditor from "./pages/WebsiteEditor.jsx"
 import useGetCurrentUser from './hooks/useGetCurrentUser.js'
 import { useSelector } from 'react-redux'
 import Live from './pages/Live.jsx';
+import Prices from './pages/Pricing.jsx';
 export const serverUrl = "http://localhost:8000"
 
 
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/generate" element={userData ? <Generate /> : <Home />} />
         <Route path="/editor/:id" element={userData ? <WebsiteEditor /> : <Home />} />
         <Route path="/site/:id" element={<Live />} />
+        <Route path="/pricing" element={<Prices />} />
       </Routes>
     </BrowserRouter>
   )

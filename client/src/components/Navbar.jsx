@@ -2,7 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from "framer-motion"
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import { Coins, ChevronDown, LogOut, LayoutDashboard } from "lucide-react"
+import { ChevronDown, LogOut, LayoutDashboard, Cpu } from "lucide-react"
 import axios from 'axios'
 import { serverUrl } from '../App'
 import { setUserData } from '../redux/userSlice'
@@ -37,12 +37,12 @@ export default function Navbar({ onClose, openProfile, setOpenProfile }) {
 
                 <div className='flex items-center gap-6'>
                     <nav className='hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400'>
-                        <button className='hover:text-white transition-colors'>Pricing</button>
+                        <button className='hover:text-white cursor-pointer  py-1.5 px-3 rounded-full hover:border-white border border-white/50 transition-colors' onClick={() => { navigate('/pricing') }}>{userData ? "Buy credits" : "Pricing"}</button>
                     </nav>
 
                     {userData && (
-                        <div className='hidden md:flex items-center gap-2 py-1.5 px-3 rounded-full bg-white/5 border border-white/10 text-xs'>
-                            <Coins size={14} className='text-yellow-500' />
+                        <div className='hidden md:flex items-center cursor-pointer gap-2 py-1.5 px-3 rounded-full bg-white/5 border border-white/10 text-xs'  >
+                            <Cpu size={14} className='text-yellow-500' />
                             <span className='text-zinc-300'>{userData.credits} <span className="opacity-50">credits</span></span>
                         </div>
                     )}
