@@ -132,8 +132,8 @@ export default function WebsiteEditor() {
                 </div>
                 <div className='p-3 border-t border-white/10'>
                     <div className='flex gap-2'>
-                        <textarea row='1' placeholder='Describe changes...' className='flex-1 rounded-2xl px-4 py-3 border bg-white/5 border-white/10 text-sm outline-none resize-none' value={prompt} onChange={e => setPrompt(e.target.value)}></textarea>
-                        <button className='px-4 rounded-2xl py-3 bg-white text-black' disabled={updateLodading} onClick={handleUpdate}><Send size={14} /></button>
+                        <textarea row='1' placeholder='Describe changes...' className='flex-1 rounded-2xl px-4 py-3 border bg-white/5 border-white/10 text-sm outline-none resize-none overflow-hidden' value={prompt} onChange={e => setPrompt(e.target.value)}></textarea>
+                        <button className='px-3 py-3 rounded-2xl  bg-white text-black' disabled={updateLodading} onClick={handleUpdate}><Send size={16} /></button>
                     </div>
                 </div>
             </aside>
@@ -189,7 +189,7 @@ export default function WebsiteEditor() {
                 >
                     <div className='h-12 px-4 flex justify-between items-center border-b border-white/10 bg-[#1e1e1e]'>
                         <span className='text-sm font-medium'>index.html</span>
-                        <button onClick={() => { setShowCode(false) }}><X size={18} /></button>
+                        <button className='cursor-pointer' onClick={() => { setShowCode(false) }}><X size={18} /></button>
                     </div>
                     <Editor theme='vs-dark' value={code} language='html' onChange={(v) => setCode(v)} />
 
@@ -203,7 +203,7 @@ export default function WebsiteEditor() {
                     exit={{ x: "100%" }}
                 >
                     <iframe className='w-full h-full bg-white' srcDoc={code} />
-                    <button className='top-4 right-4 p-2 absolute hover:bg-black hover:text-red-700 bg-black/70 rounded-lg' onClick={() => setShowFullPreview(false)}><X /></button>
+                    <button className='top-4 right-4 p-2 absolute hover:bg-black hover:text-red-700 bg-black/70 rounded-lg cursor-pointer' onClick={() => setShowFullPreview(false)}><X /></button>
 
                 </motion.div>}
             </AnimatePresence>
