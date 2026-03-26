@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://web-ai-1-u56y.onrender.com",
     credentials: true,
   }),
 );
