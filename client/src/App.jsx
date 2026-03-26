@@ -10,7 +10,7 @@ import useGetCurrentUser from './hooks/useGetCurrentUser.js'
 import { useSelector } from 'react-redux'
 import Live from './pages/Live.jsx';
 import Prices from './pages/Pricing.jsx';
-export const serverUrl = "http://localhost:8000"
+export const serverUrl = "https://web-ai-b2pj.onrender.com"
 
 
 export default function App() {
