@@ -56,7 +56,19 @@ export default function Prices() {
   const { userData } = useSelector(state => state.user)
   const handlePurchase = async (planKey) => {
     if (!userData) {
-      toast.error("Please log in first");
+      toast.error("Please log in first", {
+        style: {
+          background: "#0a0a0f",
+          color: "#f87171",
+          border: "0.5px solid rgba(239,68,68,0.3)",
+          borderRadius: "10px",
+          fontSize: "14px",
+        },
+        iconTheme: {
+          primary: "#f87171",
+          secondary: "#0a0a0f",
+        },
+      });
       navigate("/");
       return;
     }

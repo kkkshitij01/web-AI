@@ -54,7 +54,20 @@ export default function WebsiteEditor() {
     }, [updateLodading])
     const handleUpdate = async () => {
         if (!prompt.trim()) {
-            toast.error("Please enter a description for the changes!");
+            toast.error("Please enter a description for the changes!", {
+                style: {
+                    background: "#0a0a0f",
+                    color: "#f87171",
+                    border: "0.5px solid rgba(239,68,68,0.3)",
+                    borderRadius: "10px",
+                    fontSize: "14px",
+                },
+                iconTheme: {
+                    primary: "#f87171",
+                    secondary: "#0a0a0f",
+                },
+            });
+
             return;
         }
         const text = prompt;
