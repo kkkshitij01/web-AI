@@ -5,6 +5,7 @@ import { serverUrl } from "../App"
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { motion } from "motion/react"
+import { toast } from 'react-toastify';
 const plans = [
   {
     key: "Basic",
@@ -46,7 +47,7 @@ const plans = [
       "Dedicated Technical Support"
     ],
     popular: false,
-    button: "Contact Sales",
+    button: "Buy",
   },
 ];
 export default function Prices() {
@@ -55,11 +56,8 @@ export default function Prices() {
   const { userData } = useSelector(state => state.user)
   const handlePurchase = async (planKey) => {
     if (!userData) {
+      toast.error("Please log in first");
       navigate("/");
-      return
-    }
-    if (planKey === "enterprise") {
-      navigate("/dashboard");
       return;
     }
     setLoading(planKey);
