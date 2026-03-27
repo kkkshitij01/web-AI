@@ -9,8 +9,8 @@ const plans = [
   {
     key: "Basic",
     name: "Basic",
-    price: 1999,
-    credits: 500,
+    price: 1000,
+    credits: 200,
     description: "Perfect for rapid ideation and exploring the engine's potential.",
     features: [
       "Vanilla HTML/CSS/JS Output",
@@ -23,8 +23,8 @@ const plans = [
   {
     key: "pro",
     name: "Pro",
-    price: 4999,
-    credits: 1500,
+    price: 2000,
+    credits: 500,
     description: "Tailored for freelancers and developers building client-ready sites.",
     features: [
       "Priority Synthesis Speed",
@@ -37,8 +37,8 @@ const plans = [
   {
     key: "enterprise",
     name: "Enterprise",
-    price: "",
-    credits: "On-Demand",
+    price: 5000,
+    credits: 2000,
     description: "Scaling web  production for agencies and technical teams.",
     features: [
       "Multi-Page Architecture Support",
@@ -111,7 +111,7 @@ export default function Prices() {
               <h1 className='text-xl font-semibold mb-2'>{p.name}</h1>
               <p className='text-zinc-400 text-sm mb-6'>{p.description}</p>
               <div className='flex items-end gap-1 mb-4'>
-                <span className=' text-zinc-400 mb-1'>{p.price == "" ? "-" : "Rs"} </span>
+                <span className=' text-zinc-400 mb-1'>Rs</span>
                 <span className='text-4xl font-semibold'>{p.price}</span>
               </div>
               <div className='flex items-end gap-2 mb-8'>

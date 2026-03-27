@@ -14,7 +14,7 @@ export default function Live() {
         const fetchWebsite = async () => {
             try {
                 setLoading(true);
-                const { data } = await axios.get(`${serverUrl}/api/website/get-by-slug/${id}`, { withCredentials: true });
+                const { data } = await axios.get(`${serverUrl}/api/website/get-by-slug/${id}`);
                 setHtml(data.latestCode);
             } catch (err) {
                 console.error("Error fetching website:", err);
