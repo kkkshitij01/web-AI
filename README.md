@@ -10,25 +10,30 @@ An AI-powered website builder. Describe what you want, and AutoCanvas.AI generat
 
 ### Landing Page
 
-<img width="1440" height="900" alt="Screenshot 2026-03-27 at 7 12 07 AM" src="https://github.com/user-attachments/assets/ba035c32-71ba-463c-8ec7-7bd2d20eb7ed" />
+<img width="823" height="465" alt="Screenshot 2026-07-09 at 10 06 17 AM" src="https://github.com/user-attachments/assets/9683adb6-c772-4b6e-a13c-fe93263030d0" />
+
 
 
 ### How It Works
 
-<img width="1440" height="900" alt="Screenshot 2026-03-27 at 7 12 32 AM" src="https://github.com/user-attachments/assets/6aff592a-4174-4048-82f7-f778fc4ae525" />
+<img width="822" height="463" alt="Screenshot 2026-07-09 at 10 06 08 AM" src="https://github.com/user-attachments/assets/66b183df-9d2e-42a9-9ade-618e58cfaf71" />
+
 
 
 ### Dashboard
 
-<img width="1440" height="900" alt="Screenshot 2026-03-27 at 7 11 15 AM" src="https://github.com/user-attachments/assets/5a0a8015-2c75-4e8c-a864-aba41efb69b7" />
+<img width="823" height="465" alt="Screenshot 2026-07-09 at 10 05 51 AM" src="https://github.com/user-attachments/assets/641a06c3-8bcd-4e7f-8d80-52ff8406f8c8" />
+
 
 ### Generate Page
 
-<img width="1440" height="900" alt="Screenshot 2026-03-27 at 7 13 26 AM" src="https://github.com/user-attachments/assets/6ed849d1-9946-4119-90c2-f0df4eb4e582" />
+
+<img width="833" height="461" alt="Screenshot 2026-07-09 at 10 05 28 AM" src="https://github.com/user-attachments/assets/d6b18a3e-8c28-4abe-a14f-376ae6099cca" />
 
 ### Editor & Live Preview
 
-<img width="1440" height="900" alt="Screenshot 2026-03-27 at 7 14 18 AM" src="https://github.com/user-attachments/assets/2fa74ef2-e999-4f6b-8497-f5db873a0103" />
+<img width="840" height="463" alt="Screenshot 2026-07-09 at 10 05 41 AM" src="https://github.com/user-attachments/assets/f81be07c-1f82-436a-885d-6c6bdfb76de3" />
+
 
 ---
 ## Features
